@@ -1,6 +1,6 @@
 # Microsoft Teams Deploy Card
 
-![MS Teams Deploy Card](https://github.com/toko-bifrost/ms-teams-deploy-card/workflows/MS%20Teams%20Deploy%20Card/badge.svg)
+![MS Teams Deploy Card](https://github.com/arkahna/ms-teams-deploy-card/workflows/MS%20Teams%20Deploy%20Card/badge.svg)
 
 A comprehensive notification card in Microsoft Teams for your deployments.
 
@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # this is the new step
-      - uses: toko-bifrost/ms-teams-deploy-card@master #  or "./" if in a local set-up
+      - uses: arkahna/ms-teams-deploy-card@master #  or "./" if in a local set-up
         if: always()
         with:
           github-token: ${{ github.token }}
@@ -59,15 +59,15 @@ jobs:
 
 #### Cozy and Complete Layout-specific Configurations
 
-| Name                       | Required | Default                      | Description                                                                                                             |
-| -------------------------- | -------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `environment`              | `false`  | None                         | Name of the environment, e.g. `development`, `production` (won't be included in the card if none)                       |
-| `timezone`                 | `false`  | `"UTC"`                      | A [valid database timezone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. `Australia/Sydney` |
-| `enable-view-status`       | `false`  | `true`                       | Enable an action to view the deployment status                                                                          |
-| `enable-review-diffs`      | `false`  | `true`                       | Enable an action to review commit diffs                                                                                 |
-| `view-status-action-text`  | `false`  | `"View build/deploy status"` | Customize action text in viewing the deployment status                                                                  |
-| `review-diffs-action-text` | `false`  | `"Review commit diffs"`      | Customize action text in reviewing commit diffs                                                                         |
-| `custom-actions`           | `false`  | `null`                       | Add more actions; must be a YAML-parseable multiline string with `text` and `url` pairs                                 |
+| Name                         | Required | Default                      | Description                                                                                                             |
+| ---------------------------- | -------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `environment`                | `false`  | None                         | Name of the environment, e.g. `development`, `production` (won't be included in the card if none)                       |
+| `timezone`                   | `false`  | `"UTC"`                      | A [valid database timezone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. `Australia/Sydney` |
+| `enable-view-status-action`  | `false`  | `true`                       | Enable an action to view the deployment status                                                                          |
+| `enable-review-diffs-action` | `false`  | `true`                       | Enable an action to review commit diffs                                                                                 |
+| `view-status-action-text`    | `false`  | `"View build/deploy status"` | Customize action text in viewing the deployment status                                                                  |
+| `review-diffs-action-text`   | `false`  | `"Review commit diffs"`      | Customize action text in reviewing commit diffs                                                                         |
+| `custom-actions`             | `false`  | `null`                       | Add more actions; must be a YAML-parseable multiline string with `text` and `url` pairs                                 |
 
 #### Complete Layout-specific Configurations
 
@@ -94,7 +94,7 @@ jobs:
 - If you are going to set `custom-facts` (only for `complete` layout) and `custom-actions` (on both `cozy` and `complete` layout), look out for the pipe symbol (`|`). Github Actions only accept `string`, `number`, and `boolean` as parameters on job steps. To bypass this restriction and to instill YAML list formatting, we have to set it with a YAML-parseable multiline string containing a YAML list of objects with `name` and `value` on `custom-facts`, and `text` and `url` (i.e. must be a valid URI format) on `custom-actions`. If there is an error in YAML parsing, no custom facts/actions will be appended.
 
 ```yaml
-- uses: toko-bifrost/ms-teams-deploy-card@master
+- uses: arkahna/ms-teams-deploy-card@master
   with:
     github-token: ${{ github.token }}
     webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
